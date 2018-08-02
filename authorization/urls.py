@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from .views import *
+from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin/create/$', AdminCreateView.as_view()),
+    url(r'^admin/invite/$', InviteUserView.as_view()),
+    url(r'^login/', obtain_jwt_token),
+    url(r'^register/(?P<username>[\w-]+)', CompleteUserRegistrationView.as_view()),
+    url(r'^add/role/', RoleCreateView.as_view()),
 ]

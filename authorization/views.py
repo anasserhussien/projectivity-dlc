@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.generics import(
     CreateAPIView, ListCreateAPIView,
-    UpdateAPIView)
+    UpdateAPIView, ListAPIView)
 
 from .serializers import *
 
@@ -23,6 +23,18 @@ class CompleteUserRegistrationView(UpdateAPIView):
     serializer_class = CompleteUserRegistrationSerializer
     lookup_field = 'username'
     lookup_url_kwarg = 'username'
+
+class GetMyUsersView(ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = GetMyUsersSerializer
+    permission_classes = (IsAdminUser,)
+    def get_queryset(self):
+        user = self.request.user
+        profiles = UserProfile.objects.filter(admin =user)
+        list = []
+        for pro in profiles:
+            list.append(User.objects.get(pk = pro.user_id))
+        return list
 
 class RoleCreateView(CreateAPIView):
     queryset = Role.objects.all()

@@ -24,6 +24,9 @@ class UserProfile(models.Model):
     role = models.ForeignKey(Role, on_delete=models.CASCADE)
     admin = models.ForeignKey(User, related_name = 'admin', on_delete = models.CASCADE)
 
+    def __str__(self):
+        return self.user.username
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created and instance.is_superuser:

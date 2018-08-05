@@ -24,5 +24,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^user/', include('authorization.urls')),
     url(r'^doc/', schema_view),
+    url(r'^project/', include('project.urls')),
 
 ]

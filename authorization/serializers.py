@@ -15,6 +15,13 @@ class AdminCreateSerializer(serializers.ModelSerializer):
         model = User
         fields = ('username', 'email', 'password', 'is_superuser')
 
+    def validate_email(self, value):
+        if User.objects.filter(email = value):
+            raise serializers.ValidationError("A user with that email is already registered")
+        return value
+
+
+
     def create(self, validated_data):
         username = self.validated_data['username']
         email = self.validated_data['email']

@@ -1,0 +1,30 @@
+[
+  {
+    "model": "authorization.role",
+    "pk":1,
+    "fields": {
+      "role": "admin"
+    }
+  },
+  {
+    "model": "authorization.role",
+    "pk":2,
+    "fields": {
+      "role": "project_owner"
+    }
+  },
+  {
+    "model": "authorization.role",
+    "pk":3,
+    "fields": {
+      "role": "team_leader"
+    }
+  },
+  {
+    "model": "authorization.role",
+    "pk":4,
+    "fields": {
+      "role": "member"
+    }
+  }
+]

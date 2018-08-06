@@ -1,1 +1,1 @@
-web: gunicorn projectivity-dlc.wsgi
+web: gunicorn management.wsgi

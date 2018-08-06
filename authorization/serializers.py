@@ -33,6 +33,11 @@ class InviteUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         fields = ('role','email')
+    def validate_email(self, value):
+        if User.objects.filter(email = value):
+            raise serializers.ValidationError("A user with that email is already registered")
+        return value
+
     def create(self, validated_data):
         #print(self.context['request'].user)
         auto_generated_username = get_random_string(length = 30)
@@ -57,7 +62,7 @@ class InviteUserSerializer(serializers.ModelSerializer):
             admin_id = self.context['request'].user.id)
         profile_instance.save()
         base_url = self.context['request'].build_absolute_uri('/').strip("/")
-        self.full_url += base_url + '/user/register/'+ username + '?query='
+        self.full_url += base_url + '/auth/register/'+ username + '?query='
         query_params = urllib.parse.urlencode({"email":instance.email,
                                                 "role": Role.objects.get(role = profile_instance.role)
                                                 })

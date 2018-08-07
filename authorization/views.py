@@ -33,9 +33,10 @@ class GetMyUsersView(ListAPIView):
         profiles = UserProfile.objects.filter(admin =user)
         list = []
         for pro in profiles:
-            list.append(User.objects.get(pk = pro.user_id))
+            if pro.admin_id != pro.user_id:
+                list.append(User.objects.get(pk = pro.user_id))
         return list
 
-class RoleCreateView(CreateAPIView):
+class RoleListCreateView(ListCreateAPIView):
     queryset = Role.objects.all()
     serializer_class = RoleSerializer

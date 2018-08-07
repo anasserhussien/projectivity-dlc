@@ -25,5 +25,5 @@ urlpatterns = [
     url(r'^login/', obtain_jwt_token),
 
     url(r'^register/(?P<username>[\w-]+)', CompleteUserRegistrationView.as_view()),
-    url(r'^add/role/', RoleCreateView.as_view()),
+    url(r'^role/', RoleListCreateView.as_view()),
 ]

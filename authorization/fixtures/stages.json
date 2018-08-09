@@ -1,0 +1,51 @@
+[
+  {
+    "model": "project.stage",
+    "pk":1,
+    "fields": {
+      "title": "introduction",
+      "project_id":3
+    }
+  },
+  {
+    "model": "project.stage",
+    "pk":2,
+    "fields": {
+      "title": "technical_briefing",
+      "project_id":3
+    }
+  },
+  {
+    "model": "project.stage",
+    "pk":3,
+    "fields": {
+      "title": "design",
+      "project_id":3
+    }
+  },
+  {
+    "model": "project.stage",
+    "pk":4,
+    "fields": {
+      "title": "development",
+      "project_id":3
+    }
+  },
+  {
+    "model": "project.stage",
+    "pk":5,
+    "fields": {
+      "title": "testing",
+      "project_id":3
+    }
+  },
+  {
+    "model": "project.stage",
+    "pk":6,
+    "fields": {
+      "title": "done",
+      "project_id":3
+    }
+  }
+
+]

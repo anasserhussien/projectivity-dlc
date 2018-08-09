@@ -10,3 +10,21 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+
+class Stage(models.Model):
+    title = models.TextField(unique = True)
+    project = models.ForeignKey(Project, on_delete = models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+class Task(models.Model):
+    title = models.TextField()
+    content = models.TextField()
+    estimated_hours = models.DecimalField()
+    actual_hours = models.DecimalField()
+    stage = models.ForeignKey(Stage, on_delete = models.CASCADE)
+    assignee = models.ForeignKey(User, on_delete = models.CASCADE, null= True, blank = True)
+
+    def __str__(self):
+        return self.title
